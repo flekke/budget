@@ -20,8 +20,9 @@ const defaultCategories = {
   "Fitness": 741
 };
 
-// 데이터 불러오기
-let budgets = JSON.parse(localStorage.getItem(`budgets_${monthKey}`)) || { ...defaultCategories };
+// budgets 항상 초기화: 기본 카테고리는 반드시 존재
+let storedBudgets = JSON.parse(localStorage.getItem(`budgets_${monthKey}`));
+let budgets = storedBudgets ?? { ...defaultCategories };
 let logs = JSON.parse(localStorage.getItem(`logs_${monthKey}`)) || [];
 
 function saveData() {
@@ -29,7 +30,6 @@ function saveData() {
   localStorage.setItem(`logs_${monthKey}`, JSON.stringify(logs));
 }
 
-// 공통 드롭다운 갱신
 function updateCategoryDropdown() {
   const select = document.getElementById('categorySelect');
   if (!select) return;
@@ -42,7 +42,6 @@ function updateCategoryDropdown() {
   }
 }
 
-// 예산 요약 렌더링
 function renderBudgets() {
   const ul = document.getElementById('budgetList');
   if (!ul) return;
@@ -59,7 +58,6 @@ function renderBudgets() {
   }
 }
 
-// 카테고리 리스트 렌더링 (수정/삭제 포함)
 function renderCategoryList() {
   const ul = document.getElementById('categoryList');
   if (!ul) return;
@@ -75,7 +73,6 @@ function renderCategoryList() {
   }
 }
 
-// 카테고리 추가 또는 수정
 function addOrUpdateCategory() {
   const name = document.getElementById('newCategoryInput').value.trim();
   const budget = parseFloat(document.getElementById('newBudgetInput').value);
@@ -87,13 +84,11 @@ function addOrUpdateCategory() {
   document.getElementById('newBudgetInput').value = '';
 }
 
-// 수정할 카테고리 정보 입력창에 불러오기
 function editCategory(cat) {
   document.getElementById('newCategoryInput').value = cat;
   document.getElementById('newBudgetInput').value = budgets[cat];
 }
 
-// 카테고리 삭제
 function deleteCategory(cat) {
   if (!confirm(`Delete category "${cat}"?`)) return;
   delete budgets[cat];
@@ -101,7 +96,6 @@ function deleteCategory(cat) {
   saveData(); renderBudgets(); renderCategoryList(); updateCategoryDropdown();
 }
 
-// 지출 내역 추가
 function addExpense() {
   const cat = document.getElementById('categorySelect').value;
   const amt = parseFloat(document.getElementById('amountInput').value);
@@ -113,7 +107,6 @@ function addExpense() {
   document.getElementById('descInput').value = '';
 }
 
-// 📄 로그 테이블 렌더링 (log.html 전용)
 function renderLogTable() {
   const tbody = document.querySelector('#logTable tbody');
   if (!tbody) return;
@@ -131,13 +124,11 @@ function renderLogTable() {
   });
 }
 
-// 로그 삭제
 function deleteLog(index) {
   logs.splice(index, 1);
   saveData(); renderLogTable();
 }
 
-// CSV 다운로드
 function downloadCSV() {
   if (!logs.length) return alert("No logs found.");
   const header = "Date,Category,Amount,Description\n";
@@ -154,11 +145,11 @@ function uploadCSV() {
   const fileInput = document.getElementById('csvFile');
   const file = fileInput.files[0];
   if (!file) return alert("Please choose a CSV file.");
-  
+
   const reader = new FileReader();
   reader.onload = function(e) {
     const content = e.target.result;
-    const lines = content.trim().split("\n").slice(1); // skip header
+    const lines = content.trim().split("\n").slice(1);
     const newLogs = lines.map(line => {
       const [date, category, amount, desc] = line.split(",");
       return {
@@ -179,8 +170,6 @@ function uploadCSV() {
   reader.readAsText(file);
 }
 
-
-// 페이지 구분 실행
 if (window.location.pathname.endsWith("index.html")) {
   renderBudgets();
   renderCategoryList();
