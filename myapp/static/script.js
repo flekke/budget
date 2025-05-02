@@ -1,15 +1,12 @@
-// myapp/static/script.js
-
-const monthKey = new Date().toISOString().slice(0, 7); // 예: '2025-05'
-
-document.getElementById('currentMonth').textContent = `📆 ${monthKey} 예산 관리`;
-
-let budgets = JSON.parse(localStorage.getItem(`budgets_${monthKey}`)) || {};
-let logs = JSON.parse(localStorage.getItem(`logs_${monthKey}`)) || [];
-
-function saveData() {
-  localStorage.setItem(`budgets_${monthKey}`, JSON.stringify(budgets));
-  localStorage.setItem(`logs_${monthKey}`, JSON.stringify(logs));
+function updateCategoryDropdown() {
+  const select = document.getElementById('categorySelect');
+  select.innerHTML = '';
+  for (const cat in budgets) {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    select.appendChild(option);
+  }
 }
 
 function renderBudgets() {
@@ -19,24 +16,23 @@ function renderBudgets() {
     const used = logs
       .filter(log => log.category === cat)
       .reduce((sum, log) => sum + log.amount, 0);
+    const remaining = budgets[cat] - used;
     const li = document.createElement('li');
+
     li.textContent = `${cat} (${budgets[cat]} kr): ${used} kr used`;
+
+    // 예산 다 썼으면 회색 + 줄긋기
+    if (remaining <= 0) {
+      li.style.color = '#999';
+      li.style.textDecoration = 'line-through';
+    }
+
     ul.appendChild(li);
   }
 }
 
-function renderLogs() {
-  const tbody = document.querySelector('#logTable tbody');
-  tbody.innerHTML = '';
-  logs.forEach(log => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${log.date}</td><td>${log.category}</td><td>${log.amount} kr</td><td>${log.desc}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
 function addExpense() {
-  const category = document.getElementById('categoryInput').value.trim();
+  const category = document.getElementById('categorySelect').value;
   const amount = parseFloat(document.getElementById('amountInput').value);
   const desc = document.getElementById('descInput').value.trim();
 
@@ -55,11 +51,6 @@ function addExpense() {
   saveData();
   renderBudgets();
   renderLogs();
-
-  // 입력칸 초기화
-  document.getElementById('categoryInput').value = '';
-  document.getElementById('amountInput').value = '';
-  document.getElementById('descInput').value = '';
 }
 
 function addCategory() {
@@ -74,10 +65,12 @@ function addCategory() {
   budgets[newCat] = newBudget;
   saveData();
   renderBudgets();
-
+  updateCategoryDropdown(); // 드롭다운 갱신
   document.getElementById('newCategoryInput').value = '';
   document.getElementById('newBudgetInput').value = '';
 }
 
+// 초기 렌더링
 renderBudgets();
 renderLogs();
+updateCategoryDropdown();
