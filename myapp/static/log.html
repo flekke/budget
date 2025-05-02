@@ -1,1 +1,40 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Log</title>
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>🧾 Expense Log</h1>
+    <p id="currentMonth"></p>
+
+    <div class="card">
+      <table id="logTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="downloadCSV()">📄 Download CSV</button>
+      <button onclick="window.location.href='/index.html'">↩ Back to Budget</button>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
