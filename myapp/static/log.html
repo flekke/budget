@@ -32,7 +32,9 @@
     <div style="text-align: center; margin-top: 20px;">
       <button onclick="downloadCSV()">📄 Download CSV</button>
       <button onclick="window.location.href='/index.html'">↩ Back to Budget</button>
-    </div>
+      <input type="file" id="csvFile" accept=".csv">
+      <button onclick="uploadCSV()">📤 Upload CSV</button>
+   </div>
   </div>
 
   <script src="/script.js"></script>
