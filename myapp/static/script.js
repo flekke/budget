@@ -1,5 +1,8 @@
 const monthKey = new Date().toISOString().slice(0, 7); // "2025-05"
-document.getElementById('currentMonth')?.textContent = `📅 ${monthKey}`;
+const monthTitle = document.getElementById('currentMonth');
+if (monthTitle) {
+  monthTitle.textContent = `📅 ${monthKey}`;
+}
 
 // 기본 카테고리
 const defaultCategories = {
