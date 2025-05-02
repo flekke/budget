@@ -186,3 +186,14 @@ document.addEventListener("DOMContentLoaded", () => {
 if (window.location.pathname.endsWith("log.html")) {
   renderLogTable();
 }
+
+
+// HTML에서 쓰는 함수들을 전역에 등록해줘야 함
+window.addExpense = addExpense;
+window.addOrUpdateCategory = addOrUpdateCategory;
+window.editCategory = editCategory;
+window.deleteCategory = deleteCategory;
+window.downloadCSV = downloadCSV;
+window.uploadCSV = uploadCSV;
+window.deleteLog = deleteLog;
+
