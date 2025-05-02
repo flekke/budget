@@ -150,6 +150,36 @@ function downloadCSV() {
   a.click();
 }
 
+function uploadCSV() {
+  const fileInput = document.getElementById('csvFile');
+  const file = fileInput.files[0];
+  if (!file) return alert("Please choose a CSV file.");
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const content = e.target.result;
+    const lines = content.trim().split("\n").slice(1); // skip header
+    const newLogs = lines.map(line => {
+      const [date, category, amount, desc] = line.split(",");
+      return {
+        date: date.trim(),
+        category: category.trim(),
+        amount: parseFloat(amount.trim()),
+        desc: desc.trim()
+      };
+    });
+
+    if (confirm("Replace current logs with uploaded file?")) {
+      logs = newLogs;
+      saveData();
+      renderLogTable();
+      alert("Log restored from CSV!");
+    }
+  };
+  reader.readAsText(file);
+}
+
+
 // 페이지 구분 실행
 if (window.location.pathname.endsWith("index.html")) {
   renderBudgets();
