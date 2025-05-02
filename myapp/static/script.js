@@ -67,15 +67,23 @@ function renderCategoryList() {
   if (!ul) return;
   ul.innerHTML = '';
   for (const cat in budgets) {
+    const used = logs.filter(l => l.category === cat).reduce((sum, l) => sum + l.amount, 0);
     const li = document.createElement('li');
     li.innerHTML = `
-      ${cat} - ${budgets[cat]} kr
-      <button onclick="editCategory('${cat}')">✏</button>
-      <button onclick="deleteCategory('${cat}')">🗑</button>
+      <span>${cat} - ${budgets[cat]} kr (used ${used} kr)</span>
+      <div>
+        <button onclick="editCategory('${cat}')">✏</button>
+        <button onclick="deleteCategory('${cat}')">🗑</button>
+      </div>
     `;
+    if (used >= budgets[cat]) {
+      li.style.color = '#999';
+      li.style.textDecoration = 'line-through';
+    }
     ul.appendChild(li);
   }
 }
+
 
 function addOrUpdateCategory() {
   const name = document.getElementById('newCategoryInput').value.trim();
