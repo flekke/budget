@@ -1,29 +1,50 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>예산 관리</title>
+  <title>Budget Manager</title>
   <link rel="stylesheet" href="/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <h1>📊 예산 관리</h1>
+    <h1>📊 Budget Manager</h1>
     <h2 id="currentMonth"></h2>
 
-    <!-- 사용 내역 입력 -->
+    <!-- 💸 Add Expense -->
     <div class="card">
-      <h3>💸 지출 추가</h3>
+      <h3>Add New Expense</h3>
       <div class="input-group">
         <select id="categorySelect"></select>
-        <input type="number" id="amountInput" placeholder="금액 (kr)">
-        <input type="text" id="descInput" placeholder="내용">
-        <button onclick="addExpense()">추가</button>
+        <input type="number" id="amountInput" placeholder="Amount (kr)">
+        <input type="text" id="descInput" placeholder="Description">
+        <button onclick="addExpense()">Add</button>
       </div>
     </div>
 
-    <!-- 카테고리 관리 -->
+    <!-- 📁 Category Management -->
     <div class="card">
-      <h3>📁 카테고리 추가/수정</h3>
+      <h3>Manage Categories</h3>
       <div class="input-group">
-        <input type="text" id="newCategoryInput" placeholder="카테고
+        <input type="text" id="newCategoryInput" placeholder="Category name">
+        <input type="number" id="newBudgetInput" placeholder="Budget (kr)">
+        <button onclick="addOrUpdateCategory()">Save</button>
+      </div>
+      <ul id="categoryList" class="budget-list"></ul>
+    </div>
+
+    <!-- 📂 Monthly Summary -->
+    <div class="card">
+      <h3>This Month's Budget Summary</h3>
+      <ul id="budgetList" class="budget-list"></ul>
+    </div>
+
+    <!-- 🧾 Navigate to Logs -->
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="window.location.href='/log.html'">View Expense Log</button>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
