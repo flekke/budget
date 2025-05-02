@@ -1,13 +1,83 @@
 /* myapp/static/style.css */
+
 body {
-  font-family: sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f3f4f6;
+  color: #333;
+  margin: 0;
   padding: 20px;
 }
-input {
-  margin: 4px;
+
+.container {
+  max-width: 800px;
+  margin: auto;
 }
-table, th, td {
-  border: 1px solid #aaa;
+
+h1 {
+  text-align: center;
+  color: #3b82f6;
+  margin-bottom: 10px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 120px;
+}
+
+button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+table {
+  width: 100%;
   border-collapse: collapse;
-  padding: 6px;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #e0f2fe;
+}
+
+.budget-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.budget-list li {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
 }
