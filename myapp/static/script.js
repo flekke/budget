@@ -171,11 +171,18 @@ function uploadCSV() {
   reader.readAsText(file);
 }
 
-if (window.location.pathname.endsWith("index.html")) {
-  renderBudgets();
-  renderCategoryList();
-  updateCategoryDropdown();
-}
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.pathname.endsWith("index.html")) {
+    renderBudgets();
+    renderCategoryList();
+    updateCategoryDropdown();
+  }
+
+  if (window.location.pathname.endsWith("log.html")) {
+    renderLogTable();
+  }
+});
+
 if (window.location.pathname.endsWith("log.html")) {
   renderLogTable();
 }
