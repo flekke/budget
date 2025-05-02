@@ -1,0 +1,13 @@
+/* myapp/static/style.css */
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+input {
+  margin: 4px;
+}
+table, th, td {
+  border: 1px solid #aaa;
+  border-collapse: collapse;
+  padding: 6px;
+}
