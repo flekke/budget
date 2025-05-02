@@ -191,6 +191,15 @@ if (window.location.pathname.endsWith("log.html")) {
 }
 
 
+function resetLogs() {
+  if (!confirm(`Reset all expenses for ${monthKey}?`)) return;
+  logs = [];  // 사용 내역만 삭제
+  saveData();
+  renderBudgets();
+  alert("This month's logs have been reset.");
+}
+
+
 // HTML에서 쓰는 함수들을 전역에 등록해줘야 함
 window.addExpense = addExpense;
 window.addOrUpdateCategory = addOrUpdateCategory;
