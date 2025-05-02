@@ -64,18 +64,27 @@ function renderBudgets() {
 
 function renderCategoryList() {
   const ul = document.getElementById('categoryList');
+  
   if (!ul) return;
   ul.innerHTML = '';
   for (const cat in budgets) {
     const used = logs.filter(l => l.category === cat).reduce((sum, l) => sum + l.amount, 0);
+    const available = budgets[cat] - used;
     const li = document.createElement('li');
     li.innerHTML = `
-      <span>${cat} - ${budgets[cat]} kr (used ${used} kr)</span>
-      <div>
-        <button onclick="editCategory('${cat}')">✏</button>
-        <button onclick="deleteCategory('${cat}')">🗑</button>
-      </div>
-    `;
+    <span>${cat} - ${budgets[cat]} kr 
+      (<span class="amount-summary">
+        <span class="used-amount">U ${used} kr</span>, 
+        <span class="available-amount">A ${available} kr</span>
+      </span>)
+    </span>
+    <div>
+      <button onclick="editCategory('${cat}')">✏</button>
+      <button onclick="deleteCategory('${cat}')">🗑</button>
+    </div>
+  `;
+
+
     if (used >= budgets[cat]) {
       li.style.color = '#999';
       li.style.textDecoration = 'line-through';
@@ -117,6 +126,8 @@ function addExpense() {
   saveData(); renderBudgets();
   document.getElementById('amountInput').value = '';
   document.getElementById('descInput').value = '';
+  renderCategoryList();
+
 }
 
 function renderLogTable() {
