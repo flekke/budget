@@ -1,13 +1,14 @@
-/* 모바일 & 앱 스타일로 최적화된 예산 관리 CSS (최대 폭 제한 및 여백 최소화) */
+/* 감성적이고 트렌디한 테마 - earthy tone + 초록 포인트 추가 */
+/* 색상 팔레트: #606c38, #283618, #fefae0, #dda15e, #bc6c25 */
 
 html {
   font-size: 18px;
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f9fafb;
-  color: #111827;
+  font-family: 'Comic Relief', 'Noto Sans KR', sans-serif;
+  background-color: #fefae0;
+  color: #283618;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -17,21 +18,22 @@ body {
 .container {
   width: 100%;
   margin: 0;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 h1, h2, h3 {
   text-align: center;
-  color: #2563eb;
+  color: #283618;
   margin-bottom: 1rem;
 }
 
 .card {
   background: #ffffff;
-  border-radius: 1rem;
-  padding: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  margin-bottom: 1.2rem;
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+  border-left: 6px solid #606c38; /* 초록 포인트 */
 }
 
 .input-group {
@@ -42,18 +44,20 @@ h1, h2, h3 {
 }
 
 input, select {
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #ddd6ae;
   font-size: 1.05rem;
   max-width: 320px;
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
+  background-color: #fffef0;
+  color: #283618;
 }
 
 button {
-  background-color: #3b82f6;
+  background-color: #dda15e;
   color: #fff;
   border: none;
   border-radius: 0.75rem;
@@ -64,10 +68,11 @@ button {
   width: 100%;
   max-width: 320px;
   margin: 0 auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-  background-color: #2563eb;
+  background-color: #606c38; /* 초록 hover 효과 */
 }
 
 .budget-list {
@@ -77,34 +82,53 @@ button:hover {
 }
 
 .budget-list li {
-  padding: 0.6rem 0.4rem;
-  border-bottom: 1px solid #e5e7eb;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #e0dcc2;
   font-size: 1.05rem;
-  gap: 0.4rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  background-color: #fefae0;
+  border-radius: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .budget-list span {
+  font-size: 1.1rem;
   flex-grow: 1;
-  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.budget-list .amount-summary {
+  color: #5c432d;
+}
+
+.budget-list .used-amount {
+  font-weight: normal;
+}
+
+.budget-list .available-amount {
+  color: #000;
+  font-weight: bold;
 }
 
 .budget-list button {
   font-size: 0.9rem;
-  padding: 0.4rem 0.6rem;
-  background-color: #f3f4f6;
-  color: #111827;
-  border: 1px solid #d1d5db;
+  padding: 0.3rem 0.5rem;
+  margin-left: 0.2rem;
   border-radius: 0.5rem;
+  background-color: #e9edc9; /* 연한 초록 느낌 */
+  color: #283618;
+  border: 1px solid #c9d6af;
   width: auto;
   flex-shrink: 0;
 }
 
 .budget-list button:hover {
-  background-color: #e5e7eb;
+  background-color: #bc6c25;
+  color: #fff;
 }
 
 /* 로그 테이블 스타일 */
@@ -113,20 +137,24 @@ table {
   border-collapse: collapse;
   margin-top: 1rem;
   font-size: 1rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 th, td {
-  border: 1px solid #e5e7eb;
-  padding: 0.6rem;
+  border: 1px solid #e0dcc2;
+  padding: 0.75rem;
   text-align: center;
 }
 
 th {
-  background-color: #eff6ff;
+  background-color: #fefae0;
   font-weight: 600;
+  color: #283618;
 }
 
-/* 모바일 화면 대응 */
+/* 모바일 대응 */
 @media (max-width: 480px) {
   html {
     font-size: 17px;
