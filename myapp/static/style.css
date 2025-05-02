@@ -15,9 +15,9 @@ body {
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 4rem 1rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem;
 }
 
 h1, h2, h3 {
@@ -29,9 +29,9 @@ h1, h2, h3 {
 .card {
   background: #ffffff;
   border-radius: 1.25rem;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .input-group {
@@ -72,21 +72,28 @@ button:hover {
 }
 
 .budget-list li {
-  padding: 1rem;
+  padding: 0.75rem 0.5rem;
   border-bottom: 1px solid #e5e7eb;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.05rem;
+  flex-wrap: wrap;
+}
+
+.budget-list span {
+  flex: 1 1 auto;
 }
 
 .budget-list button {
-  margin-left: 0.5rem;
-  font-size: 1.05rem;
-  padding: 0.5rem 0.8rem;
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
   background-color: #f3f4f6;
   color: #111827;
   border: 1px solid #d1d5db;
+  width: auto;
+  flex-shrink: 0;
 }
 
 .budget-list button:hover {
@@ -119,7 +126,7 @@ th {
   }
 
   .container {
-    padding: 1rem 0.75rem 3rem 0.75rem;
+    padding: 0.5rem;
   }
 
   .input-group {
@@ -134,5 +141,6 @@ th {
   .budget-list li {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.3rem;
   }
 }
