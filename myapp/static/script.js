@@ -22,8 +22,9 @@ const defaultCategories = {
 
 // budgets 항상 초기화: 기본 카테고리는 반드시 존재
 let storedBudgets = JSON.parse(localStorage.getItem(`budgets_${monthKey}`));
-let budgets = storedBudgets ?? { ...defaultCategories };
+let budgets = storedBudgets && Object.keys(storedBudgets).length > 0 ? storedBudgets : { ...defaultCategories };
 let logs = JSON.parse(localStorage.getItem(`logs_${monthKey}`)) || [];
+saveData(); // 초기화 시 저장 보장
 
 function saveData() {
   localStorage.setItem(`budgets_${monthKey}`, JSON.stringify(budgets));
