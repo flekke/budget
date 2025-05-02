@@ -1,53 +1,29 @@
-<!-- myapp/static/index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>P&C Budget</title>
+  <title>예산 관리</title>
   <link rel="stylesheet" href="/style.css">
-  <!-- 구글폰트: Noto Sans Korean -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <h1>📊 Monthly budget</h1>
-    <h2 id="currentMonth"> P&C Budget </h2>
+    <h1>📊 예산 관리</h1>
+    <h2 id="currentMonth"></h2>
 
+    <!-- 사용 내역 입력 -->
     <div class="card">
-      <h3>💸 Expenditure </h3>
+      <h3>💸 지출 추가</h3>
       <div class="input-group">
         <select id="categorySelect"></select>
-        <input type="number" id="amountInput" placeholder="amount (kr)">
-        <input type="text" id="descInput" placeholder="content">
-        <button onclick="addExpense()">addExpense</button>
+        <input type="number" id="amountInput" placeholder="금액 (kr)">
+        <input type="text" id="descInput" placeholder="내용">
+        <button onclick="addExpense()">추가</button>
       </div>
     </div>
 
+    <!-- 카테고리 관리 -->
     <div class="card">
-      <h3>📁 add Category</h3>
+      <h3>📁 카테고리 추가/수정</h3>
       <div class="input-group">
-        <input type="text" id="newCategoryInput" placeholder="new category">
-        <input type="number" id="newBudgetInput" placeholder="budget (kr)">
-        <button onclick="addCategory()">add Category</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>📂 current budget</h3>
-      <ul id="budgetList" class="budget-list"></ul>
-    </div>
-
-    <div class="card">
-      <h3>🧾 log</h3>
-      <table id="logTable">
-        <thead>
-          <tr><th>date</th><th>category</th><th>expense</th><th>content</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+        <input type="text" id="newCategoryInput" placeholder="카테고
