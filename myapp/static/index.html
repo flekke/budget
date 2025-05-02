@@ -1,15 +1,43 @@
+<!-- myapp/static/index.html -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>예산 계산기</title>
+  <meta charset="UTF-8">
+  <title>Budget Tracker</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>예산 계산기</h1>
-  <input id="budget" placeholder="예산 (예: 7000)">
-  <input id="used" placeholder="사용 금액 (예: 3500)">
-  <button onclick="calculate()">계산</button>
-  <p id="result"></p>
+  <h2 id="currentMonth"></h2>
+
+  <!-- 입력 영역 -->
+  <div id="input-row">
+    <input type="text" id="categoryInput" placeholder="카테고리">
+    <input type="number" id="amountInput" placeholder="금액 (kr)">
+    <input type="text" id="descInput" placeholder="내용">
+    <button onclick="addExpense()">내역 추가</button>
+  </div>
+
+  <!-- 카테고리 추가 -->
+  <div id="add-category-row">
+    <input type="text" id="newCategoryInput" placeholder="새 카테고리">
+    <input type="number" id="newBudgetInput" placeholder="예산">
+    <button onclick="addCategory()">카테고리 추가</button>
+  </div>
+
+  <!-- 예산 현황 -->
+  <h3>이번 달 예산 현황</h3>
+  <ul id="budgetList"></ul>
+
+  <!-- 사용 내역 로그 -->
+  <h3>사용 내역</h3>
+  <table id="logTable">
+    <thead>
+      <tr>
+        <th>날짜</th><th>카테고리</th><th>금액</th><th>내용</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <script src="script.js"></script>
 </body>
