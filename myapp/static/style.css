@@ -1,183 +1,129 @@
-/* 감성적이고 트렌디한 테마 - earthy tone + 초록 포인트 추가 */
-/* 색상 팔레트: #606c38, #283618, #fefae0, #dda15e, #bc6c25 */
+/*==========================================================*/
+/*  style.css - Sticky Add Section + Partial List Below      */
+/*==========================================================*/
 
-html {
-  font-size: 18px;
+/*--- Reset & Base ---*/
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%;
+  font-family: 'Open Sans', sans-serif; font-size: 20px;
+  background-color: #fefae0; color: #283618;
+  overflow-x: hidden;
 }
 
-body {
-  font-family: 'Comic Relief', 'Noto Sans KR', sans-serif;
-  background-color: #fefae0;
-  color: #283618;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*--- First Screen: Add New Expense ---*/
+#first-screen {
+  /* auto height so list can flow up */
+  padding: 0.5rem;
+}
+#first-screen h1 { font-size: 2.2rem; margin-bottom: 0.2rem; }
+#first-screen h2 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+#first-screen .card {
+  position: sticky; top: 0; z-index: 10;
+  width: 100%; max-width: 450px;
+  background-color: #ffffff;
+  border-left: 6px solid #606c38;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 0 auto 0.5rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.container {
-  width: 100%;
-  margin: 0;
-  padding: 1rem;
-}
-
-h1, h2, h3 {
-  text-align: center;
-  color: #283618;
-  margin-bottom: 1rem;
-}
-
-.card {
-  background: #ffffff;
-  border-radius: 1.25rem;
-  padding: 1.25rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-  margin-bottom: 1.5rem;
-  border-left: 6px solid #606c38; /* 초록 포인트 */
-}
-
+/*--- Input Group ---*/
 .input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
+  display: flex; flex-direction: column; gap: 0.8rem; width: 100%;
 }
-
-input, select {
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid #ddd6ae;
-  font-size: 1.05rem;
-  max-width: 320px;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0 auto;
+.input-group select,
+.input-group input,
+.input-group button {
+  width: 100%; padding: 1rem; font-size: 1.3rem;
+  border: 1px solid #ddd6ae; border-radius: 0.75rem;
   background-color: #fffef0;
-  color: #283618;
 }
-
-button {
-  background-color: #dda15e;
-  color: #fff;
-  border: none;
-  border-radius: 0.75rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+.input-group button {
+  background-color: #dda15e; color: #ffffff; font-weight: 700;
+  cursor: pointer; transition: background-color 0.2s;
 }
+.input-group button:hover { background-color: #606c38; }
 
-button:hover {
-  background-color: #606c38; /* 초록 hover 효과 */
+/*--- Second Screen: Manage Categories & List ---*/
+#second-screen {
+  padding: 1rem;
+  background-color: #fefae0;
+  box-sizing: border-box;
 }
 
 .budget-list {
-  list-style-type: none;
-  padding-left: 0;
-  margin-top: 0.5rem;
+  list-style: none; padding: 0;
+  width: 100%; max-width: 450px;
+  margin: 0 auto;
 }
-
 .budget-list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.75rem 0.5rem;
-  border-bottom: 1px solid #e0dcc2;
-  font-size: 1.05rem;
-  flex-wrap: nowrap;
-  background-color: #fefae0;
-  border-radius: 0.5rem;
-  margin-bottom: 0.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem; margin-bottom: 0.6rem;
+  background-color: #ffffff; border-radius: 0.5rem;
+  font-size: 0.rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  box-sizing: border-box;
 }
-
-.budget-list span {
-  font-size: 1.1rem;
-  flex-grow: 1;
-  white-space: nowrap;
+.item-left { flex: 1 1 auto; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  margin-right: 0.6rem;
 }
-
-.budget-list .amount-summary {
-  color: #5c432d;
-}
-
-.budget-list .used-amount {
-  font-weight: normal;
-}
-
-.budget-list .available-amount {
-  color: #000;
-  font-weight: bold;
-}
-
+.amount-summary { color: #5c432d; }
+.used-amount { color: #283618; font-size: 1.2rem; }
+.available-amount { font-weight: 700; color: #000; font-size: 1.2rem; }
+.item-right { display: flex; gap: 0.6rem; flex: 0 0 auto; }
 .budget-list button {
-  font-size: 0.9rem;
-  padding: 0.3rem 0.5rem;
-  margin-left: 0.2rem;
-  border-radius: 0.5rem;
-  background-color: #e9edc9; /* 연한 초록 느낌 */
-  color: #283618;
-  border: 1px solid #c9d6af;
-  width: auto;
-  flex-shrink: 0;
+  padding: 0.5rem 0.5rem; font-size: 0.9rem;
+  border: 1px solid #c9d6af; border-radius: 0.6rem;
+  background-color: #e9edc9; color: #283618;
+  transition: background-color 0.2s; cursor: pointer;
 }
+.budget-list button:hover { background-color: #bc6c25; color: #fff; }
 
-.budget-list button:hover {
-  background-color: #bc6c25;
-  color: #fff;
-}
+/*--- Logs Table ---*/
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { border: 1px solid #e0dcc2; padding: 0.75rem; text-align: center; }
+th { background-color: #fefae0; font-weight: 600; }
 
-/* 로그 테이블 스타일 */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  font-size: 1rem;
-  background-color: #fff;
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-th, td {
-  border: 1px solid #e0dcc2;
-  padding: 0.75rem;
-  text-align: center;
-}
-
-th {
-  background-color: #fefae0;
-  font-weight: 600;
-  color: #283618;
-}
-
-/* 모바일 대응 */
+/*--- Mobile Adjustments ---*/
 @media (max-width: 480px) {
-  html {
-    font-size: 17px;
+  html { font-size: 18px; }
+  #first-screen { padding: 0.2rem; }
+  #first-screen .card { padding: 1rem; margin-bottom: 0.4rem; }
+  .input-group select, .input-group input, .input-group button {
+    padding: 0.8rem; font-size: 1.2rem;
   }
-
-  .container {
-    padding: 0.5rem;
-  }
-
-  .input-group {
-    gap: 0.6rem;
-    align-items: center;
-  }
-
-  input, select, button {
-    font-size: 1rem;
-    padding: 0.75rem;
-    max-width: 320px;
-  }
-
-  .budget-list li {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.3rem;
-  }
+  .budget-list li { padding: 0.9rem; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .item-right { gap: 0.5rem; }
 }
+/* --- 2nd-Screen Reorder & Wrap Fix --- */
+
+/* 1) 카드 내부를 flex-col 로, 순서 재정렬 */
+#second-screen .card {
+    display: flex;
+    flex-direction: column;
+  }
+  /* 리스트를 최상단(order:1) */
+  #second-screen .card .budget-list {
+    order: 1;
+    margin-top: 0.5rem;
+  }
+  /* 입력폼을 그 아래(order:2) */
+  #second-screen .card .input-group {
+    order: 2;
+    margin-top: 1rem;
+  }
+  
+  /* 2) 리스트 아이템 줄바꿈 허용 */
+  .budget-list li {
+    white-space: normal;   /* 줄바꿈 가능 */
+  }
+  /* 왼쪽 텍스트 영역 줄바꿈 허용 */
+  .item-left {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  
