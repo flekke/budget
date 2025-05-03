@@ -7,7 +7,7 @@ if (monthTitle) {
 // 기본 카테고리
 const defaultCategories = {
   "Groceries": 7500,
-  "Transportation": 900,
+  "Ruter": 900,
   "Shopping": 500,
   "Gifts": 500,
   "Mistake": 500,
@@ -64,27 +64,28 @@ function renderBudgets() {
 
 function renderCategoryList() {
   const ul = document.getElementById('categoryList');
-  
   if (!ul) return;
   ul.innerHTML = '';
   for (const cat in budgets) {
-    const used = logs.filter(l => l.category === cat).reduce((sum, l) => sum + l.amount, 0);
+    const used = logs
+      .filter(l => l.category === cat)
+      .reduce((sum, l) => sum + l.amount, 0);
     const available = budgets[cat] - used;
     const li = document.createElement('li');
     li.innerHTML = `
-    <span>${cat} - ${budgets[cat]} kr 
-      (<span class="amount-summary">
-        <span class="used-amount">U ${used} kr</span>, 
-        <span class="available-amount">A ${available} kr</span>
-      </span>)
-    </span>
-    <div>
-      <button onclick="editCategory('${cat}')">✏</button>
-      <button onclick="deleteCategory('${cat}')">🗑</button>
-    </div>
-  `;
-
-
+      <div class="item-left">
+        <!-- 카테고리명만 붉은색 볼드 -->
+        <span style="color:#dc2626; font-weight:bold;">${cat}</span>
+         - ${budgets[cat]} kr
+        (<span class="used-amount">U ${used} kr</span>,
+         <!-- 잔여금액만 붉은색 볼드 -->
+         <span style="color:#dc2626; font-weight:bold;">A ${available} kr</span>)
+      </div>
+      <div class="item-right">
+        <button onclick="editCategory('${cat}')">✏</button>
+        <button onclick="deleteCategory('${cat}')">🗑</button>
+      </div>
+    `;
     if (used >= budgets[cat]) {
       li.style.color = '#999';
       li.style.textDecoration = 'line-through';
@@ -207,7 +208,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 if (window.location.pathname.endsWith("log.html")) {
   renderLogTable();
+
+
 }
+
+function adjustCategoryListHeight() {
+  // 전체 뷰포트 높이
+  const vh = window.innerHeight;
+
+  // 헤더(h1+h2) + 두 개의 .card 높이 합산
+  const header = document.querySelector('h1');
+  const subheader = document.getElementById('currentMonth');
+  const cards = document.querySelectorAll('.card'); // [0] = Add, [1] = Manage
+
+  let used = 0;
+  [header, subheader, ...cards].forEach(el => {
+    if (el) used += el.getBoundingClientRect().height;
+  });
+
+  // 리스트에 max-height 부여
+  const list = document.querySelector('.budget-list');
+  if (list) {
+    list.style.maxHeight = (vh - used) + 'px';
+  }
+}
+
+// 초기 호출 및 리사이즈 대응
+window.addEventListener('load', adjustCategoryListHeight);
+window.addEventListener('resize', adjustCategoryListHeight);
 
 
 function resetLogs() {
