@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Budget Manager</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">    <h1>📊 Budget for Team PC</h1>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 첫 화면: Add New Expense 섹션만 보이도록 높이 설정 -->
+  <section id="first-screen">
+    <h1>📊 Budget for Team P&C</h1>
     <h2 id="currentMonth"></h2>
-
-    <!-- 💸 Add Expense -->
     <div class="card">
       <h3>Add New Expense</h3>
       <div class="input-group">
@@ -19,8 +23,10 @@
         <button onclick="addExpense()">Add</button>
       </div>
     </div>
+  </section>
 
-    <!-- 📁 Category Management -->
+  <!-- 두 번째 화면: 스크롤하여 접근하는 Manage Categories 섹션 -->
+  <section id="second-screen">
     <div class="card">
       <h3>Manage Categories</h3>
       <div class="input-group">
@@ -30,15 +36,11 @@
       </div>
       <ul id="categoryList" class="budget-list"></ul>
     </div>
-    
-    <!-- 🧾 Navigate to Logs -->
-    <div style="text-align: center; margin-top: 20px;">
+    <div style="text-align:center; margin-top:1rem;">
       <button onclick="window.location.href='/log.html'">View Expense Log</button>
-      <button onclick="resetLogs()" style="margin-top: 1rem; background-color: #ef4444;">🔄 Reset This Month</button>
+      <button onclick="resetLogs()" style="margin-top:0.5rem; background-color:#ef4444;">🔄 Reset This Month</button>
     </div>
-  </div>
-
-  
+  </section>
 
   <script src="/script.js"></script>
 </body>
