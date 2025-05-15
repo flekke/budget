@@ -148,6 +148,18 @@ function addExpense() {
 
 }
 
+
+// 저장된 로그 불러오기
+function fetchLogs() {
+  fetch('/api/getLogs')
+    .then(res => res.json())
+    .then(serverLogs => {
+      logs = serverLogs;
+      renderBudgets();
+      renderCategoryList();
+    });
+}
+
 function renderLogTable() {
   const tbody = document.querySelector('#logTable tbody');
   if (!tbody) return;
