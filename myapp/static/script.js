@@ -123,8 +123,25 @@ function addExpense() {
   const amt = parseFloat(document.getElementById('amountInput').value);
   const desc = document.getElementById('descInput').value.trim();
   if (!cat || isNaN(amt)) return alert("Enter valid data.");
-  logs.push({ date: new Date().toISOString().split('T')[0], category: cat, amount: amt, desc });
-  saveData(); renderBudgets();
+
+  const entry = {
+    date: new Date().toISOString().split('T')[0],
+    category: cat,
+    amount: amt,
+    desc: desc
+  };
+
+  // 서버에 전송
+  fetch('/api/addLog', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(entry)
+  }).then(() => {
+    // 다시 목록 새로고침
+    fetchLogs();
+  });
+
+  
   document.getElementById('amountInput').value = '';
   document.getElementById('descInput').value = '';
   renderCategoryList();
